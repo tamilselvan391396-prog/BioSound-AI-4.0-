@@ -1,98 +1,306 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#07111f">
-  <meta name="description" content="BioSound AI — live environmental sound recognition and audio analysis">
-  <link rel="manifest" href="./manifest.webmanifest">
-  <link rel="stylesheet" href="./style.css">
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  >
+
   <title>BioSound AI 4.0</title>
+
+  <!-- PWA theme and description -->
+  <meta name="theme-color" content="#07111f">
+
+  <meta
+    name="description"
+    content="BioSound AI — live environmental sound recognition and audio analysis"
+  >
+
+  <!-- Android PWA manifest -->
+  <link
+    rel="manifest"
+    href="./manifest.webmanifest"
+  >
+
+  <!-- Application icons -->
+  <link
+    rel="icon"
+    type="image/png"
+    sizes="192x192"
+    href="./biosound-icon-192.png"
+  >
+
+  <link
+    rel="apple-touch-icon"
+    href="./biosound-icon-192.png"
+  >
+
+  <!-- Mobile application support -->
+  <meta name="mobile-web-app-capable" content="yes">
+
+  <meta
+    name="apple-mobile-web-app-capable"
+    content="yes"
+  >
+
+  <meta
+    name="apple-mobile-web-app-status-bar-style"
+    content="black-translucent"
+  >
+
+  <meta
+    name="apple-mobile-web-app-title"
+    content="BioSound AI"
+  >
+
+  <!-- Existing stylesheet -->
+  <link
+    rel="stylesheet"
+    href="./style.css"
+  >
 </head>
+
 <body>
+
   <main class="app">
+
+    <!-- Application header -->
     <header class="brand">
-      <div class="logo" aria-hidden="true">◉</div>
+
+      <div class="logo" aria-hidden="true">
+        ◉
+      </div>
+
       <div>
         <h1>BioSound AI</h1>
         <p>4.0 · Live sound recognition</p>
       </div>
-      <span class="version">AI AUDIO LAB</span>
+
+      <span class="version">
+        AI AUDIO LAB
+      </span>
+
     </header>
 
+
+    <!-- Main sound detection panel -->
     <section class="hero panel">
+
       <div class="status">
-        <span id="statusDot" class="dot"></span>
-        <span id="statusText">Ready — allow microphone access to begin</span>
+
+        <span
+          id="statusDot"
+          class="dot"
+        ></span>
+
+        <span id="statusText">
+          Ready — allow microphone access to begin
+        </span>
+
       </div>
 
-      <p class="eyebrow">CURRENT SOUND</p>
-      <h2 id="currentSound" class="current">Waiting for sound…</h2>
-      <p id="currentScore" class="muted">No prediction yet</p>
+      <p class="eyebrow">
+        CURRENT SOUND
+      </p>
 
-      <div class="meter"><span id="scoreMeter"></span></div>
+      <h2
+        id="currentSound"
+        class="current"
+      >
+        Waiting for sound…
+      </h2>
 
+      <p
+        id="currentScore"
+        class="muted"
+      >
+        No prediction yet
+      </p>
+
+      <!-- Prediction confidence meter -->
+      <div class="meter">
+        <span id="scoreMeter"></span>
+      </div>
+
+      <!-- Listening controls -->
       <div class="actions">
-        <button id="startButton">● Start listening</button>
-        <button id="stopButton" class="secondary" disabled>Stop listening</button>
+
+        <button id="startButton">
+          ● Start listening
+        </button>
+
+        <button
+          id="stopButton"
+          class="secondary"
+          disabled
+        >
+          Stop listening
+        </button>
+
       </div>
 
-      <p id="errorText" class="error" role="alert"></p>
-      <p class="privacy-note">🔒 Audio is processed locally in this browser session.</p>
+      <p
+        id="errorText"
+        class="error"
+        role="alert"
+      ></p>
+
+      <p class="privacy-note">
+        🔒 Audio is processed locally in this browser session.
+      </p>
+
     </section>
 
+
+    <!-- Alternative sound predictions -->
     <section class="panel">
+
       <div class="section-heading">
-        <h2>Other possible sounds</h2>
-        <span class="mini-tag">TOP MATCHES</span>
+
+        <h2>
+          Other possible sounds
+        </h2>
+
+        <span class="mini-tag">
+          TOP MATCHES
+        </span>
+
       </div>
-      <ol id="alternatives" class="alternatives">
-        <li class="muted">Predictions will appear here.</li>
+
+      <ol
+        id="alternatives"
+        class="alternatives"
+      >
+
+        <li class="muted">
+          Predictions will appear here.
+        </li>
+
       </ol>
+
     </section>
 
+
+    <!-- Frequency analysis -->
     <section class="panel">
+
       <div class="section-heading">
-        <h2>Frequency analysis</h2>
-        <span class="mini-tag">LIVE SIGNAL</span>
+
+        <h2>
+          Frequency analysis
+        </h2>
+
+        <span class="mini-tag">
+          LIVE SIGNAL
+        </span>
+
       </div>
 
       <div class="metrics">
+
         <div class="metric">
-          <span>Dominant frequency</span>
-          <strong id="frequencyValue">— Hz</strong>
+
+          <span>
+            Dominant frequency
+          </span>
+
+          <strong id="frequencyValue">
+            — Hz
+          </strong>
+
         </div>
+
         <div class="metric">
-          <span>Signal RMS</span>
-          <strong id="rmsValue">—</strong>
+
+          <span>
+            Signal RMS
+          </span>
+
+          <strong id="rmsValue">
+            —
+          </strong>
+
         </div>
+
       </div>
 
-      <canvas id="spectrum" width="640" height="180"
-        aria-label="Live frequency spectrum"></canvas>
+      <!-- Live frequency spectrum -->
+      <canvas
+        id="spectrum"
+        width="640"
+        height="180"
+        aria-label="Live frequency spectrum"
+      ></canvas>
 
       <p class="muted small">
-        Frequency measurements describe the signal; they do not identify a sound by themselves.
+        Frequency measurements describe the signal;
+        they do not identify a sound by themselves.
       </p>
+
     </section>
 
+
+    <!-- Sound event timeline -->
     <section class="panel">
+
       <div class="section-heading">
-        <h2>Sound event timeline</h2>
-        <button id="clearHistory" class="text-button">Clear history</button>
+
+        <h2>
+          Sound event timeline
+        </h2>
+
+        <button
+          id="clearHistory"
+          class="text-button"
+        >
+          Clear history
+        </button>
+
       </div>
-      <ol id="timeline" class="timeline">
-        <li class="muted">Detected events will appear here.</li>
+
+      <ol
+        id="timeline"
+        class="timeline"
+      >
+
+        <li class="muted">
+          Detected events will appear here.
+        </li>
+
       </ol>
+
     </section>
 
+
+    <!-- Application information -->
     <footer class="muted small">
-      BioSound AI uses the general YAMNet sound classifier. Similar sounds may be confused and model scores are not calibrated probabilities.
-      Microphone recordings are not uploaded or saved by this starter. Internet is required to load MediaPipe and YAMNet.
+
+      BioSound AI uses the general YAMNet sound classifier.
+      Similar sounds may be confused and model scores are not
+      calibrated probabilities.
+
+      Microphone recordings are not uploaded or saved by this
+      starter.
+
+      Internet is required to load MediaPipe and YAMNet.
+
     </footer>
+
   </main>
 
-  <script type="module" src="./app.js"></script>
+
+  <!-- Main application JavaScript -->
+  <script
+    type="module"
+    src="./app.js"
+  ></script>
+
 </body>
 </html>
 
+
+    
+
+      
