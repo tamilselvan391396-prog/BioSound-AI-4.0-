@@ -1,0 +1,7 @@
+[versions]
+agp = "8.7.3"
+kotlin = "2.0.21"
+mediapipe = "0.10.26"
+
+[libraries]
+mediapipe-tasks-audio = { module = "com.google.mediapipe:tasks-audio", version.ref = "mediapipe" }

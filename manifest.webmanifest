@@ -1,0 +1,11 @@
+{
+  "name": "BioSound AI 4.0",
+  "short_name": "BioSound AI",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0b1220",
+  "theme_color": "#101827",
+  "description": "Live environmental sound recognition and frequency analysis",
+  "icons": []
+}

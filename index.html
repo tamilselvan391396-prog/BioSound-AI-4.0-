@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#101827">
+  <meta name="description" content="BioSound AI — live environmental sound recognition">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="stylesheet" href="./web/css/style.css">
+  <title>BioSound AI 4.0</title>
+</head>
+<body>
+  <main class="app">
+    <header class="brand">
+      <div class="logo" aria-hidden="true">◉</div>
+      <div><h1>BioSound AI</h1><p>4.0 · Live sound recognition</p></div>
+    </header>
+
+    <section class="panel">
+      <div class="status"><span id="statusDot" class="dot"></span><span id="statusText">Ready — allow microphone access to begin</span></div>
+      <p class="eyebrow">CURRENT SOUND</p>
+      <h2 id="currentSound" class="current">Waiting for sound…</h2>
+      <p id="currentScore" class="muted">No prediction yet</p>
+      <div class="meter"><span id="scoreMeter"></span></div>
+      <div class="actions">
+        <button id="startButton">Start listening</button>
+        <button id="stopButton" class="secondary" disabled>Stop</button>
+      </div>
+      <p id="errorText" class="error" role="alert"></p>
+    </section>
+
+    <section class="panel">
+      <h2>Other possible sounds</h2>
+      <ol id="alternatives" class="alternatives"><li class="muted">Predictions will appear here.</li></ol>
+    </section>
+
+    <section class="panel">
+      <h2>Frequency analysis</h2>
+      <div class="metric"><span>Dominant frequency</span><strong id="frequencyValue">— Hz</strong></div>
+      <div class="metric"><span>Signal RMS</span><strong id="rmsValue">—</strong></div>
+      <canvas id="spectrum" width="640" height="180" aria-label="Live frequency spectrum"></canvas>
+      <p class="muted small">Frequency measurements describe the signal; they do not identify a sound by themselves.</p>
+    </section>
+
+    <section class="panel">
+      <div class="section-heading"><h2>Sound event timeline</h2><button id="clearHistory" class="text-button">Clear</button></div>
+      <ol id="timeline" class="timeline"><li class="muted">Detected events will appear here.</li></ol>
+    </section>
+    <footer class="muted small">
+      Audio is analysed locally in this browser session. This starter does not upload or save microphone recordings.
+      Model scores are not calibrated probabilities. Internet is currently required to load MediaPipe and YAMNet.
+    </footer>
+  </main>
+  <script type="module" src="./web/js/app.js"></script>
+</body>
+</html>

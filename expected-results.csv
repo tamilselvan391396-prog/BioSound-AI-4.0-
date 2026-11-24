@@ -1,0 +1,10 @@
+test_id,category,example_audio,expected_behavior
+T001,Animal,dog_bark.wav,Top prediction should be a relevant animal label or uncertain
+T002,Animal,bird_call.wav,Top prediction should be a relevant bird label or uncertain
+T003,Human,clapping.wav,Top prediction should be a relevant human/percussive label
+T004,Transport,car_horn.wav,Top prediction should be a relevant vehicle/horn label
+T005,Industrial,electric_motor.wav,Top prediction should be machinery-related or uncertain
+T006,Nature,rain.wav,Top prediction should be rain/water-related
+T007,Household,door_close.wav,Top prediction should be door/impact-related
+T008,Music,drum.wav,Top prediction should be music/instrument-related
+T009,Unknown,unseen_sound.wav,App should avoid presenting an unsupported certain identification
