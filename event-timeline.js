@@ -13,7 +13,9 @@ export class EventTimeline {
   }
 
   add(label, category, score, timestamp = Date.now()) {
-    if (!label || score < this.minimumScore) return;
+    if (!label || score < this.minimumScore) {
+      return;
+    }
 
     const previous = this.events[0];
 
@@ -46,33 +48,38 @@ export class EventTimeline {
     this.render();
   }
 
+  formatTime(timestamp) {
+    return new Date(timestamp).toLocaleTimeString("en-IN", {
+      hour: "numeric",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: true
+    });
+  }
+
   render() {
     this.list.replaceChildren();
 
-    if (!this.events.length) {
+    if (this.events.length === 0) {
       const li = document.createElement("li");
 
       li.className = "muted";
       li.textContent = "Detected events will appear here.";
 
-      this.list.append(li);
+      this.list.appendChild(li);
       return;
     }
 
     for (const event of this.events) {
       const li = document.createElement("li");
 
-      // Display time in 12-hour format with AM/PM
-      const time = new Date(event.firstSeen).toLocaleTimeString([], {
-        hour: "numeric",
-        minute: "2-digit",
-        hour12: true
-      });
+      const time = this.formatTime(event.firstSeen);
+      const percentage = Math.round(event.score * 100);
 
       li.textContent =
-        `${time} · ${event.category} · ${event.label} · ${Math.round(event.score * 100)}% model score`;
+        `${time} · ${event.category} · ${event.label} · ${percentage}% model score`;
 
-      this.list.append(li);
+      this.list.appendChild(li);
     }
   }
 }
