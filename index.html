@@ -1,56 +1,99 @@
+
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#101827">
-  <meta name="description" content="BioSound AI — live environmental sound recognition">
+  <meta name="theme-color" content="#07111f">
+  <meta name="description" content="BioSound AI — live environmental sound recognition and audio analysis">
   <link rel="manifest" href="./manifest.webmanifest">
-  <link rel="stylesheet" href="./web/css/style.css">
+  <link rel="stylesheet" href="./style.css">
   <title>BioSound AI 4.0</title>
 </head>
 <body>
   <main class="app">
     <header class="brand">
       <div class="logo" aria-hidden="true">◉</div>
-      <div><h1>BioSound AI</h1><p>4.0 · Live sound recognition</p></div>
+      <div>
+        <h1>BioSound AI</h1>
+        <p>4.0 · Live sound recognition</p>
+      </div>
+      <span class="version">AI AUDIO LAB</span>
     </header>
 
-    <section class="panel">
-      <div class="status"><span id="statusDot" class="dot"></span><span id="statusText">Ready — allow microphone access to begin</span></div>
+    <section class="hero panel">
+      <div class="status">
+        <span id="statusDot" class="dot"></span>
+        <span id="statusText">Ready — allow microphone access to begin</span>
+      </div>
+
       <p class="eyebrow">CURRENT SOUND</p>
       <h2 id="currentSound" class="current">Waiting for sound…</h2>
       <p id="currentScore" class="muted">No prediction yet</p>
+
       <div class="meter"><span id="scoreMeter"></span></div>
+
       <div class="actions">
-        <button id="startButton">Start listening</button>
-        <button id="stopButton" class="secondary" disabled>Stop</button>
+        <button id="startButton">● Start listening</button>
+        <button id="stopButton" class="secondary" disabled>Stop listening</button>
       </div>
+
       <p id="errorText" class="error" role="alert"></p>
+      <p class="privacy-note">🔒 Audio is processed locally in this browser session.</p>
     </section>
 
     <section class="panel">
-      <h2>Other possible sounds</h2>
-      <ol id="alternatives" class="alternatives"><li class="muted">Predictions will appear here.</li></ol>
+      <div class="section-heading">
+        <h2>Other possible sounds</h2>
+        <span class="mini-tag">TOP MATCHES</span>
+      </div>
+      <ol id="alternatives" class="alternatives">
+        <li class="muted">Predictions will appear here.</li>
+      </ol>
     </section>
 
     <section class="panel">
-      <h2>Frequency analysis</h2>
-      <div class="metric"><span>Dominant frequency</span><strong id="frequencyValue">— Hz</strong></div>
-      <div class="metric"><span>Signal RMS</span><strong id="rmsValue">—</strong></div>
-      <canvas id="spectrum" width="640" height="180" aria-label="Live frequency spectrum"></canvas>
-      <p class="muted small">Frequency measurements describe the signal; they do not identify a sound by themselves.</p>
+      <div class="section-heading">
+        <h2>Frequency analysis</h2>
+        <span class="mini-tag">LIVE SIGNAL</span>
+      </div>
+
+      <div class="metrics">
+        <div class="metric">
+          <span>Dominant frequency</span>
+          <strong id="frequencyValue">— Hz</strong>
+        </div>
+        <div class="metric">
+          <span>Signal RMS</span>
+          <strong id="rmsValue">—</strong>
+        </div>
+      </div>
+
+      <canvas id="spectrum" width="640" height="180"
+        aria-label="Live frequency spectrum"></canvas>
+
+      <p class="muted small">
+        Frequency measurements describe the signal; they do not identify a sound by themselves.
+      </p>
     </section>
 
     <section class="panel">
-      <div class="section-heading"><h2>Sound event timeline</h2><button id="clearHistory" class="text-button">Clear</button></div>
-      <ol id="timeline" class="timeline"><li class="muted">Detected events will appear here.</li></ol>
+      <div class="section-heading">
+        <h2>Sound event timeline</h2>
+        <button id="clearHistory" class="text-button">Clear history</button>
+      </div>
+      <ol id="timeline" class="timeline">
+        <li class="muted">Detected events will appear here.</li>
+      </ol>
     </section>
+
     <footer class="muted small">
-      Audio is analysed locally in this browser session. This starter does not upload or save microphone recordings.
-      Model scores are not calibrated probabilities. Internet is currently required to load MediaPipe and YAMNet.
+      BioSound AI uses the general YAMNet sound classifier. Similar sounds may be confused and model scores are not calibrated probabilities.
+      Microphone recordings are not uploaded or saved by this starter. Internet is required to load MediaPipe and YAMNet.
     </footer>
   </main>
-  <script type="module" src="./web/js/app.js"></script>
+
+  <script type="module" src="./app.js"></script>
 </body>
 </html>
+
