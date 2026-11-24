@@ -1,6 +1,7 @@
+
 import { BioSoundClassifier } from "./audio-classifier.js";
 import { categoryFor } from "./sound-taxonomy.js";
-import { EventTimeline } from "./event-timeline.js";
+import { EventTimeline } from "./event-timeline.js?v=12hour";
 import { drawSpectrum } from "./frequency.js";
 
 const $ = id => document.getElementById(id);
@@ -53,15 +54,19 @@ function showResults(resultList) {
 
   for (const item of categories.slice(1, 5)) {
     const li = document.createElement("li");
+
     li.textContent =
       `${item.displayName || item.categoryName} · ${(item.score * 100).toFixed(1)}%`;
+
     alternatives.append(li);
   }
 
   if (categories.length < 2) {
     const li = document.createElement("li");
+
     li.className = "muted";
     li.textContent = "No other strong matches.";
+
     alternatives.append(li);
   }
 
@@ -241,3 +246,5 @@ if (
       error
     ));
 }
+
+
